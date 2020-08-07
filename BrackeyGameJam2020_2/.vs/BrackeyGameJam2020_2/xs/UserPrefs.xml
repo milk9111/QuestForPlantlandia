@@ -1,0 +1,42 @@
+﻿<Properties StartupConfiguration="{05952C58-7988-EF32-27E1-36DD153081CF}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MainMenuManager.cs">
+    <Files>
+      <File FileName="Assets/Scripts/RewindManager.cs" Line="132" Column="35" />
+      <File FileName="Assets/Scripts/DungeonGeneratorV2.cs" Line="36" Column="1" />
+      <File FileName="Assets/Scripts/DungeonRoomStackState.cs" Line="15" Column="1" />
+      <File FileName="Assets/Scripts/EnemyRoomEvent.cs" Line="22" Column="9" />
+      <File FileName="Assets/Scripts/BattleSystem.cs" Line="135" Column="22" />
+      <File FileName="Assets/Scripts/LevelManager.cs" Line="27" Column="14" />
+      <File FileName="Assets/Scripts/DungeonRoomManager.cs" Line="151" Column="1" />
+      <File FileName="Assets/Scripts/MainMenuManager.cs" Line="66" Column="28" />
+      <File FileName="Assets/Scripts/GameStateSaveData.cs" Line="22" Column="1" />
+      <File FileName="Assets/Scripts/NewClass.cs" Line="15" Column="6" />
+      <File FileName="Assets/Scripts/StartMenuManager.cs" Line="35" Column="13" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="BrackeyGameJam2020_2" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="MainMenuManager.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="4655698e-0e00-4d49-8d00-642f254d2c47" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/connor/git/BrackeyGameJam2020_2/Assets/Scripts/RewindManager.cs" relfile="Assets/Scripts/RewindManager.cs" line="114" column="1" />
+      <Breakpoint file="/Users/connor/git/BrackeyGameJam2020_2/Assets/Scripts/RewindManager.cs" relfile="Assets/Scripts/RewindManager.cs" line="46" column="1" />
+      <Breakpoint file="/Users/connor/git/BrackeyGameJam2020_2/Assets/Scripts/StartMenuManager.cs" relfile="Assets/Scripts/StartMenuManager.cs" line="35" column="1" />
+      <Breakpoint file="/Users/connor/git/BrackeyGameJam2020_2/Assets/Scripts/RewindManager.cs" relfile="Assets/Scripts/RewindManager.cs" line="139" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

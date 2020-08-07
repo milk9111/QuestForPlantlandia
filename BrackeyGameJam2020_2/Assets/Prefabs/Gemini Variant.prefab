@@ -1,0 +1,136 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &5638103976581446259
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4560911096027193284, guid: 094a3c02375c3446bb417078b675987a,
+        type: 3}
+      propertyPath: unitName
+      value: Gemini
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560911096027193284, guid: 094a3c02375c3446bb417078b675987a,
+        type: 3}
+      propertyPath: unitLevel
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560911096027193284, guid: 094a3c02375c3446bb417078b675987a,
+        type: 3}
+      propertyPath: damage
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560911096027193284, guid: 094a3c02375c3446bb417078b675987a,
+        type: 3}
+      propertyPath: offensiveMove1Name
+      value: Lightning Bolt
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560911096027193284, guid: 094a3c02375c3446bb417078b675987a,
+        type: 3}
+      propertyPath: offensiveMove2Name
+      value: Fire Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560911096027193284, guid: 094a3c02375c3446bb417078b675987a,
+        type: 3}
+      propertyPath: defensiveMoveName
+      value: Magic Shield
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219196751194020113, guid: 094a3c02375c3446bb417078b675987a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219196751194020113, guid: 094a3c02375c3446bb417078b675987a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219196751194020113, guid: 094a3c02375c3446bb417078b675987a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219196751194020113, guid: 094a3c02375c3446bb417078b675987a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219196751194020113, guid: 094a3c02375c3446bb417078b675987a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219196751194020113, guid: 094a3c02375c3446bb417078b675987a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219196751194020113, guid: 094a3c02375c3446bb417078b675987a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219196751194020113, guid: 094a3c02375c3446bb417078b675987a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219196751194020113, guid: 094a3c02375c3446bb417078b675987a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219196751194020113, guid: 094a3c02375c3446bb417078b675987a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219196751194020113, guid: 094a3c02375c3446bb417078b675987a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219196751194020114, guid: 094a3c02375c3446bb417078b675987a,
+        type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219196751194020114, guid: 094a3c02375c3446bb417078b675987a,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219196751194020114, guid: 094a3c02375c3446bb417078b675987a,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219196751194020114, guid: 094a3c02375c3446bb417078b675987a,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219196751194020124, guid: 094a3c02375c3446bb417078b675987a,
+        type: 3}
+      propertyPath: m_Name
+      value: Gemini Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7314934810038276809, guid: 094a3c02375c3446bb417078b675987a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7525507516921142566, guid: 094a3c02375c3446bb417078b675987a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7525507516921142566, guid: 094a3c02375c3446bb417078b675987a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 094a3c02375c3446bb417078b675987a, type: 3}
