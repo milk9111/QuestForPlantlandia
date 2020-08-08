@@ -29,7 +29,7 @@ public class DungeonRoomManager : MonoBehaviour
 
     void OnMouseEnter()
     {
-        if (!isShowing || !canMove)
+        if (!isShowing || !canMove || !_levelManager.CanMove())
         {
             return;
         }
@@ -39,7 +39,7 @@ public class DungeonRoomManager : MonoBehaviour
 
     void OnMouseExit()
     {
-        if (!isShowing || !canMove)
+        if (!isShowing || !canMove || !_levelManager.CanMove())
         {
             return;
         }
@@ -49,7 +49,7 @@ public class DungeonRoomManager : MonoBehaviour
 
     void OnMouseUp()
     {
-        if (!isShowing || !canMove)
+        if (!isShowing || !canMove || !_levelManager.CanMove())
         {
             return;
         }

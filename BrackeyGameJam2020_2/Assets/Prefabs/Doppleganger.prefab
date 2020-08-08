@@ -162,14 +162,20 @@ MonoBehaviour:
   unitLevel: 3
   experience: 100
   experienceToNextLevel: 100
-  damage: 5
+  damage: 1
   maxHP: 15
   currentHP: 15
-  offensiveMove1Name: 
-  offensiveMove2Name: 
-  defensiveMoveName: 
+  enemyMoves:
+  - Lightning Bolt
+  - Fire Wall
+  offensiveMove1Name: Lightning Bolt
+  offensiveMove2Name: Fire Wall
+  defensiveMoveName: Magic Shield
+  activeEffects: []
   backTarget: {fileID: 7314934810038276809}
   launcher: {fileID: 7525507516921142566}
+  hud: {fileID: 0}
+  dialogueText: {fileID: 0}
 --- !u!61 &-7968937123787233822
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ public class MagicShield : Move
     {
         Debug.Log("Executing Magic Shield");
         yield return null;
-        model.battleSystem.SetState(BattleState.Enemyturn);
+        model.battleSystem.SetState(BattleState.EnemyTurn);
     }
 
     // Start is called before the first frame update

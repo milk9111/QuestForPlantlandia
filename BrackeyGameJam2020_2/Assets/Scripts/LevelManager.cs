@@ -8,6 +8,10 @@ public class LevelManager : MonoBehaviour
     public DungeonRoomManager currentRoom;
     public PartyMover party;
 
+    public GameObject isDeadMessage;
+
+    public bool canMove = true;
+
     private CameraDrag _camera;
     private DungeonGeneratorV2 _generator;
     private RewindManager _rewind;
@@ -17,6 +21,23 @@ public class LevelManager : MonoBehaviour
         _camera = FindObjectOfType<CameraDrag>();
         _generator = FindObjectOfType<DungeonGeneratorV2>();
         _rewind = FindObjectOfType<RewindManager>();
+    }
+
+    public void DeactivateMovement()
+    {
+        isDeadMessage.SetActive(true);
+        canMove = false;
+    }
+
+    public void ActivateMovement()
+    {
+        isDeadMessage.SetActive(false);
+        canMove = true;
+    }
+
+    public bool CanMove()
+    {
+        return canMove;
     }
 
     public void SetCurrentRoom(DungeonRoomManager newRoom, bool withRewind = true, UnitSave playerUnit = null)
@@ -76,14 +97,23 @@ public class LevelManager : MonoBehaviour
     IEnumerator NextDungeon()
     {
         _generator.DeactivateMovement();
-        yield return new WaitForSeconds(0.6f);
+        _rewind.DeactivateButtons();
 
-        GlobalControl.instance.rewindStack = new Stack<DungeonRoomStackState>();
-        GlobalControl.instance.dungeonSave.isNew = true;
-        PlayerPrefs.SetInt("CurrentLevel", PlayerPrefs.HasKey("CurrentLevel") ? PlayerPrefs.GetInt("CurrentLevel") + 1 : 2);
+        if (_generator.level >= 7)
+        {
+            StartCoroutine(GetComponent<SceneFader>().FadeAndLoadScene(SceneFader.FadeDirection.In, "credits"));
+            yield return null;
+        } else
+        {
+            yield return new WaitForSeconds(0.6f);
 
-        PlayerPrefs.SetString("NextScene", "test_v2");
+            GlobalControl.instance.rewindStack = new Stack<DungeonRoomStackState>();
+            GlobalControl.instance.dungeonSave.isNew = true;
+            PlayerPrefs.SetInt("CurrentLevel", PlayerPrefs.HasKey("CurrentLevel") ? PlayerPrefs.GetInt("CurrentLevel") + 1 : 2);
 
-        SceneManager.LoadScene("loading_screen");
+            PlayerPrefs.SetString("NextScene", "test_v2");
+
+            SceneManager.LoadScene("loading_screen");
+        }
     }
 }

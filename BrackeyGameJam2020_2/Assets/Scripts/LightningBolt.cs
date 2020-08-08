@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class LightningBolt : Move
 {
+
     public Transform target;
     public Transform start;
 
     public float speed = 1.0F;
 
     public bool canMove = false;
+
+    public int damage = 3;
 
     private float startTime;
 
@@ -71,26 +74,40 @@ public class LightningBolt : Move
         target = model.targetUnit.transform;
         _model = model;
 
+        if (target.position.x < transform.position.x)
+        {
+            _renderer.flipX = true;
+        }
+
         yield return null;
     }
 
     IEnumerator Finish()
     {
-        var isDead = _model.targetUnit.TakeDamage(_model.sourceUnit.damage);
+        var result = _model.targetUnit.TakeDamage(_model.sourceUnit.damage + damage);
         _renderer.enabled = false;
 
-        _model.targetHUD.SetHP(_model.targetUnit.currentHP);
-        _model.dialogueText.text = "Lightning Bolt was successful!";
+        if (result.Item1)
+        {
+            _model.targetHUD.SetHP(_model.targetUnit.currentHP);
+            _model.dialogueText.text = "Lightning Bolt was successful!";
+        }
+        else
+        {
+            _model.dialogueText.text = "Lightning Bolt was blocked!";
+        }
+
+        var isDead = result.Item2;
 
         yield return new WaitForSeconds(2f);
 
         if (isDead)
         {
-            _model.battleSystem.SetState(BattleState.Won);
+            _model.battleSystem.SetState(_model.finishState);
         }
         else
         {
-            _model.battleSystem.SetState(BattleState.Enemyturn);
+            _model.battleSystem.SetState(_model.nextState);
         }
 
         Destroy(gameObject);

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Move : MonoBehaviour, IMove
 {
+
     public virtual IEnumerator Execute(BattleDataModel model) {
         yield return null;
     }

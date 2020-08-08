@@ -126,6 +126,13 @@ public class RewindManager : MonoBehaviour
             move = index + 1;
             scrollbar.value = 1;
 
+            if (!GlobalControl.instance.playerSave.isDead)
+            {
+                levelManager.ActivateMovement();
+            }
+
+            FindObjectOfType<PlayerInfo>().SetText();
+
             levelManager.SetCurrentRoom(man, false);
         });
 
@@ -136,7 +143,9 @@ public class RewindManager : MonoBehaviour
 
         bt.GetComponentInChildren<Text>().text = $"{move}";
 
-        GlobalControl.instance.rewindStack.Push(new DungeonRoomStackState(generator.GetDrawnRooms(), playerUnit == null ? GlobalControl.instance.playerSave.Copy() : playerUnit.Copy()));
+        var unit = playerUnit == null ? GlobalControl.instance.playerSave.Copy() : playerUnit.Copy();
+
+        GlobalControl.instance.rewindStack.Push(new DungeonRoomStackState(generator.GetDrawnRooms(), unit));
     }
 
     public void DeactivateButtons()

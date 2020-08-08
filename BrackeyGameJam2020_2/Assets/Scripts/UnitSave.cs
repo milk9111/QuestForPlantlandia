@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 [Serializable]
 public class UnitSave
@@ -11,10 +12,17 @@ public class UnitSave
     public string offensiveMove1Name;
     public string offensiveMove2Name;
     public string defensiveMoveName;
+    public string[] enemyMoves;
     public bool isNew = true;
+    public bool isDead = false;
     public int experience;
     public int experienceToNextLevel;
     public Type enemyType;
+
+    public UnitSave()
+    {
+
+    }
 
     public UnitSave(Unit u, bool isNew)
     {
@@ -35,6 +43,16 @@ public class UnitSave
         defensiveMoveName = u.defensiveMoveName;
         experience = u.experience;
         experienceToNextLevel = u.experienceToNextLevel;
+        isDead = u.isDead;
+
+        if (u.enemyMoves != null && u.enemyMoves.Any())
+        {
+            enemyMoves = new string[u.enemyMoves.Count];
+            for (var i = 0; i < u.enemyMoves.Count; i++)
+            {
+                enemyMoves[i] = u.enemyMoves[i];
+            }
+        }
     }
 
     public UnitSave(UnitSave u)
@@ -50,6 +68,16 @@ public class UnitSave
         defensiveMoveName = u.defensiveMoveName;
         experience = u.experience;
         experienceToNextLevel = u.experienceToNextLevel;
+        isDead = u.isDead;
+
+        if (u.enemyMoves != null && u.enemyMoves.Length > 0)
+        {
+            enemyMoves = new string[u.enemyMoves.Length];
+            for (var i = 0; i < u.enemyMoves.Length; i++)
+            {
+                enemyMoves[i] = u.enemyMoves[i];
+            }
+        }
     }
 
     public UnitSave Copy()

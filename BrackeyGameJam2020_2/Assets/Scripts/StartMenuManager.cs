@@ -9,11 +9,28 @@ public class StartMenuManager : MonoBehaviour
     public Button continueGameButton;
     public Button deleteSaveButton;
 
+    public GameObject startMenu;
+    public GameObject characterSelection;
+
+    public GameObject geminiObj;
+    public GameObject ferbObj;
+    public GameObject violaObj;
+
+    public CharacterSelector gemini;
+    public CharacterSelector ferb;
+    public CharacterSelector viola;
+
     void Start()
     {
         continueGameButton.interactable = SaveGame.Exists();
         deleteSaveButton.interactable = SaveGame.Exists();
-        Debug.Log(SaveGame.GetPath());
+
+        gemini.Dark();
+        ferb.Dark();
+        viola.Dark();
+
+        startMenu.SetActive(true);
+        characterSelection.SetActive(false);
     }
 
     public void DeleteGame()
@@ -49,9 +66,35 @@ public class StartMenuManager : MonoBehaviour
 
     public void NewGame()
     {
+        characterSelection.SetActive(true);
+        startMenu.SetActive(false);
+    }
+
+    public void StartGame(string heroName)
+    {
         PlayerPrefs.SetInt("CurrentLevel", 1);
         GlobalControl.instance.dungeonSave.isNew = true;
+
         GlobalControl.instance.playerSave.isNew = true;
+        if (!string.IsNullOrEmpty(heroName))
+        {
+            Unit unit = null;
+            switch(heroName)
+            {
+                case "Gemini":
+                    unit = geminiObj.GetComponent<Unit>();
+                    break;
+                case "Ferb":
+                    unit = ferbObj.GetComponent<Unit>();
+                    break;
+                case "Viola":
+                    unit = violaObj.GetComponent<Unit>();
+                    break;
+            }
+
+            GlobalControl.instance.playerSave = new UnitSave(unit, false);
+        }
+        
         GlobalControl.instance.enemySave.isNew = true;
         GlobalControl.instance.rewindStack = new Stack<DungeonRoomStackState>();
         GlobalControl.instance.currentScene = "test_v2";

@@ -4,20 +4,33 @@ ScriptsOnlyBuild:
     - ActionHUD
     - BattleHUD
     - BattleSystem
+    - BushGrow
     - CameraDrag
+    - CharacterSelector
+    - CreditsManager
     - DungeonGeneratorV2
     - DungeonRoomManager
     - EnemyRoomEvent
+    - FireWall
     - GlobalControl
+    - HeadButt
+    - Heal
+    - LeafSlap
     - LevelManager
     - LightningBolt
     - LoadingSceneControl
     - MP4Player
     - MainMenuManager
     - PartyMover
+    - PlayerInfo
     - RewindManager
+    - SceneFader
+    - SleepPowder
+    - SliceAndDice
     - StartMenuManager
+    - StemWhip
     - TreasureRoomEvent
+    - TripleShot
     - Unit
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
@@ -35,7 +48,9 @@ ScriptsOnlyBuild:
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
+    - UnityEngine.EventSystems.EventTrigger
     - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.AspectRatioFitter
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.ContentSizeFitter
@@ -49,6 +64,57 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Text
     - UnityEngine.UI.VerticalLayoutGroup
   sceneClasses:
+    Assets/Scenes/credits.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 11234}
+    - Class: 114
+      Script: {instanceID: 11534}
+    - Class: 114
+      Script: {instanceID: 11588}
+    - Class: 114
+      Script: {instanceID: 12268}
+    - Class: 114
+      Script: {instanceID: 12972}
+    - Class: 114
+      Script: {instanceID: 13748}
+    - Class: 114
+      Script: {instanceID: 14378}
+    - Class: 114
+      Script: {instanceID: 99436}
+    - Class: 114
+      Script: {instanceID: 106758}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
     Assets/Scenes/loading_screen.unity:
     - Class: 1
       Script: {instanceID: 0}
@@ -113,12 +179,18 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 50
+      Script: {instanceID: 0}
+    - Class: 61
+      Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
       Script: {instanceID: 11234}
+    - Class: 114
+      Script: {instanceID: 11454}
     - Class: 114
       Script: {instanceID: 11534}
     - Class: 114
@@ -134,7 +206,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13792}
     - Class: 114
+      Script: {instanceID: 14310}
+    - Class: 114
       Script: {instanceID: 14378}
+    - Class: 114
+      Script: {instanceID: 43738}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -142,6 +218,8 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 212
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
@@ -170,6 +248,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
@@ -182,6 +264,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 11534}
     - Class: 114
       Script: {instanceID: 11588}
+    - Class: 114
+      Script: {instanceID: 11778}
+    - Class: 114
+      Script: {instanceID: 11882}
     - Class: 114
       Script: {instanceID: 12152}
     - Class: 114
@@ -202,6 +288,22 @@ ScriptsOnlyBuild:
       Script: {instanceID: 14378}
     - Class: 114
       Script: {instanceID: 14420}
+    - Class: 114
+      Script: {instanceID: 110642}
+    - Class: 114
+      Script: {instanceID: 116030}
+    - Class: 114
+      Script: {instanceID: 121036}
+    - Class: 114
+      Script: {instanceID: 124414}
+    - Class: 114
+      Script: {instanceID: 129222}
+    - Class: 114
+      Script: {instanceID: 133224}
+    - Class: 114
+      Script: {instanceID: 138446}
+    - Class: 114
+      Script: {instanceID: 144526}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -236,6 +338,10 @@ ScriptsOnlyBuild:
     - Class: 60
       Script: {instanceID: 0}
     - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
@@ -283,6 +389,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 14270}
     - Class: 114
       Script: {instanceID: 14378}
+    - Class: 114
+      Script: {instanceID: 69940}
+    - Class: 114
+      Script: {instanceID: 99436}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -346,7 +456,7 @@ ScriptsOnlyBuild:
     className: LoadingSceneControl
   - hash:
       serializedVersion: 2
-      Hash: 4dc57a5c8a7e380df7666014c1e4225a
+      Hash: c033c67087172a206eb800ee4790fa2c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Unit
@@ -364,7 +474,7 @@ ScriptsOnlyBuild:
     className: ActivationTrack
   - hash:
       serializedVersion: 2
-      Hash: 37efec4d89d537b40c86499ba1ec2eea
+      Hash: 8bae6c09e798697bf39e7375e34880af
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BattleSystem
@@ -430,7 +540,7 @@ ScriptsOnlyBuild:
     className: MagicShield
   - hash:
       serializedVersion: 2
-      Hash: 5c8f7ec5cb39dbfe46e5cc7436ae75bf
+      Hash: ffebbc594226d414b8c1034a6639a20b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LevelManager
@@ -448,7 +558,7 @@ ScriptsOnlyBuild:
     className: SignalAsset
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 2019169a26514da590467a4192252d21
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: FireWall
@@ -538,7 +648,7 @@ ScriptsOnlyBuild:
     className: Shadow
   - hash:
       serializedVersion: 2
-      Hash: 3fc607cbcf0a03bff9c19bf2c89026bf
+      Hash: f4dcc097326e72aa0cf6cc408d58a58e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LightningBolt
@@ -592,7 +702,7 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
-      Hash: 3f2241b1d41c7d64ce27e291d448d287
+      Hash: 93bebe51b10258b430c95ea546947080
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GlobalControl
@@ -742,7 +852,7 @@ ScriptsOnlyBuild:
     className: RewindManager
   - hash:
       serializedVersion: 2
-      Hash: d9882a1a718cd8ab8300486d66f111d6
+      Hash: ada8957e5a38112644ad808393cda0e4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BattleHUD
@@ -784,13 +894,13 @@ ScriptsOnlyBuild:
     className: MainMenuManager
   - hash:
       serializedVersion: 2
-      Hash: 22234b38a44e3908799700f8ea7d3a70
+      Hash: 27cf080fb64ed2436069b8b57c1462bb
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: StartMenuManager
   - hash:
       serializedVersion: 2
-      Hash: e20ac3411994946e445d8f82221d241d
+      Hash: 6f863e8ab73bf2ca0d500a88d2337a63
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DungeonGeneratorV2
@@ -926,10 +1036,83 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 1038c7b578120a9de672bb368809997d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CharacterSelector
+  - hash:
+      serializedVersion: 2
+      Hash: 3babe735c6158750057a47c0ae0eb9e9
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlayerInfo
+  - hash:
+      serializedVersion: 2
+      Hash: e50e878474ccd0fc6fe66ae619ea00ea
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SceneFader
+  - hash:
+      serializedVersion: 2
+      Hash: 16acf85c403c947fa1fc7e37dcf4d88e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CreditsManager
+  - hash:
+      serializedVersion: 2
+      Hash: 2019169a26514da590467a4192252d21
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LeafSlap
+  - hash:
+      serializedVersion: 2
+      Hash: 2a2d7b828da8a3c9b45cde8b8c2e6fa1
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: StemWhip
+  - hash:
+      serializedVersion: 2
+      Hash: afa5b5a267f3e66fee5039ff3b568477
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BushGrow
+  - hash:
+      serializedVersion: 2
+      Hash: 2a2d7b828da8a3c9b45cde8b8c2e6fa1
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: HeadButt
+  - hash:
+      serializedVersion: 2
+      Hash: f4dcc097326e72aa0cf6cc408d58a58e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TripleShot
+  - hash:
+      serializedVersion: 2
+      Hash: 2a2d7b828da8a3c9b45cde8b8c2e6fa1
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SliceAndDice
+  - hash:
+      serializedVersion: 2
+      Hash: cd9fe52b0643301c60fc4a69d639725e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Heal
+  - hash:
+      serializedVersion: 2
+      Hash: afa5b5a267f3e66fee5039ff3b568477
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SleepPowder
   platform: 2
   scenePathNames:
   - Assets/Scenes/start_menu.unity
   - Assets/Scenes/test_v2.unity
   - Assets/Scenes/test_combat.unity
   - Assets/Scenes/loading_screen.unity
-  playerPath: /Users/connor/git/BrackeyGameJam2020_2/gamejam.app
+  - Assets/Scenes/credits.unity
+  playerPath: /Users/connor/Desktop/quest_for_plantlandia.app

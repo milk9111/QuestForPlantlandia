@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class DungeonGeneratorV2 : MonoBehaviour
@@ -27,6 +28,8 @@ public class DungeonGeneratorV2 : MonoBehaviour
 	public GameObject treasureObj;
 	public GameObject partyObj;
 
+	public Text floorText;
+
 	public Transform mapRoot;
 
     void Start()
@@ -42,7 +45,15 @@ public class DungeonGeneratorV2 : MonoBehaviour
         }
 
 		GlobalControl.instance.enemySave.isNew = true;
+
 		this.level = level;
+
+		floorText.text = $"Floor {this.level}";
+		if (this.level == 7)
+        {
+			floorText.text = "Final Floor!";
+        }
+
 		var lm = FindObjectOfType<LevelManager>();
 
 		if (!GlobalControl.instance.dungeonSave.isNew)
@@ -98,6 +109,11 @@ public class DungeonGeneratorV2 : MonoBehaviour
 			{
 				rm.InitFromGlobal();
 			}
+
+			if (GlobalControl.instance.playerSave.isDead)
+            {
+				lm.DeactivateMovement();
+            }
 
 			var current = drawnRooms.First(kv => kv.Value.isCurrent).Value;
 

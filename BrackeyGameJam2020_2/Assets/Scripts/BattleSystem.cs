@@ -8,7 +8,7 @@ public enum BattleState
 {
     Start,
     PlayerTurn,
-    Enemyturn,
+    EnemyTurn,
     Won,
     Lost
 }
@@ -20,8 +20,19 @@ public class BattleSystem : MonoBehaviour
     public BattleHUD enemyHUD;
     public Text dialogueText;
 
-    public GameObject playerObj;
-    public GameObject enemyObj;
+    public GameObject levelUpBanner;
+
+    public GameObject geminiObj;
+    public GameObject ferbObj;
+    public GameObject violaObj;
+
+    public GameObject itchObj;
+    public GameObject mushObj;
+    public GameObject snipObj;
+    public GameObject squirtObj;
+    public GameObject woodyObj;
+
+    public List<string> enemies;
 
     public Transform playerBattleStation;
     public Transform enemyBattleStation;
@@ -43,28 +54,75 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator SetupBattle()
     {
-        actionHUD.Disable();
-        var player = Instantiate(playerObj, playerBattleStation);
-        playerUnit = player.GetComponent<Unit>();
+        levelUpBanner.SetActive(false);
 
-        if (!GlobalControl.instance.playerSave.isNew)
+        actionHUD.Disable();
+
+        GameObject player = null;
+        switch(GlobalControl.instance.playerSave.unitName)
         {
-            playerUnit.unitName = GlobalControl.instance.playerSave.unitName;
-            playerUnit.unitLevel = GlobalControl.instance.playerSave.unitLevel;
-            playerUnit.experience = GlobalControl.instance.playerSave.experience;
-            playerUnit.experienceToNextLevel = GlobalControl.instance.playerSave.experienceToNextLevel;
-            playerUnit.damage = GlobalControl.instance.playerSave.damage;
-            playerUnit.maxHP = GlobalControl.instance.playerSave.maxHP;
-            playerUnit.currentHP = GlobalControl.instance.playerSave.currentHP;
-            playerUnit.offensiveMove1Name = GlobalControl.instance.playerSave.offensiveMove1Name;
-            playerUnit.offensiveMove2Name = GlobalControl.instance.playerSave.offensiveMove2Name;
-            playerUnit.defensiveMoveName = GlobalControl.instance.playerSave.defensiveMoveName;
+            case "Gemini":
+                player = Instantiate(geminiObj, playerBattleStation);
+                break;
+            case "Ferb":
+                player = Instantiate(ferbObj, playerBattleStation);
+                break;
+            case "Viola":
+                player = Instantiate(violaObj, playerBattleStation);
+                break;
         }
+
+        playerUnit = player.GetComponent<Unit>();
+        playerUnit.finishState = BattleState.Lost;
+
+        playerUnit.unitName = GlobalControl.instance.playerSave.unitName;
+        playerUnit.unitLevel = GlobalControl.instance.playerSave.unitLevel;
+        playerUnit.experience = GlobalControl.instance.playerSave.experience;
+        playerUnit.experienceToNextLevel = GlobalControl.instance.playerSave.experienceToNextLevel;
+        playerUnit.damage = GlobalControl.instance.playerSave.damage;
+        playerUnit.maxHP = GlobalControl.instance.playerSave.maxHP;
+        playerUnit.currentHP = GlobalControl.instance.playerSave.currentHP;
+        playerUnit.offensiveMove1Name = GlobalControl.instance.playerSave.offensiveMove1Name;
+        playerUnit.offensiveMove2Name = GlobalControl.instance.playerSave.offensiveMove2Name;
+        playerUnit.defensiveMoveName = GlobalControl.instance.playerSave.defensiveMoveName;
 
         actionHUD.SetText(playerUnit.offensiveMove1Name, playerUnit.offensiveMove2Name, playerUnit.defensiveMoveName);
 
-        var enemy = Instantiate(enemyObj, enemyBattleStation);
-        var eu = enemy.GetComponent<Unit>(); ;
+        var enemyName = enemies[Random.Range(0, enemies.Count)];
+        if (GlobalControl.instance.enemySave != null && !string.IsNullOrEmpty(GlobalControl.instance.enemySave.unitName))
+        {
+            enemyName = GlobalControl.instance.enemySave.unitName;
+        }
+
+        GameObject enemy = null;
+        switch (enemyName)
+        {
+            case "Itch":
+                enemy = Instantiate(itchObj, enemyBattleStation);
+                break;
+            case "Mush":
+                enemy = Instantiate(mushObj, enemyBattleStation);
+                break;
+            case "Snip":
+                enemy = Instantiate(snipObj, enemyBattleStation);
+                break;
+            case "Squirt":
+                enemy = Instantiate(squirtObj, enemyBattleStation);
+                break;
+            case "Woody":
+                enemy = Instantiate(woodyObj, enemyBattleStation);
+                break;
+        }
+
+        var eu = enemy.GetComponent<Unit>();
+        eu.finishState = BattleState.Won;
+
+        eu.maxHP += GlobalControl.instance.dungeonSave.level;
+        eu.unitLevel = GlobalControl.instance.dungeonSave.level;
+
+        eu.currentHP = eu.maxHP;
+
+
         if (GlobalControl.instance.enemySave != null && !GlobalControl.instance.enemySave.isNew)
         {
             eu.unitName = GlobalControl.instance.enemySave.unitName;
@@ -74,17 +132,20 @@ public class BattleSystem : MonoBehaviour
             eu.damage = GlobalControl.instance.enemySave.damage;
             eu.maxHP = GlobalControl.instance.enemySave.maxHP;
             eu.currentHP = GlobalControl.instance.enemySave.currentHP;
-            eu.offensiveMove1Name = GlobalControl.instance.enemySave.offensiveMove1Name;
-            eu.offensiveMove2Name = GlobalControl.instance.enemySave.offensiveMove2Name;
-            eu.defensiveMoveName = GlobalControl.instance.enemySave.defensiveMoveName;
         }
 
         enemyUnit = eu;
 
-        dialogueText.text = "A mysterious " + enemyUnit.unitName + " appears...";
+        dialogueText.text = "A wild " + enemyUnit.unitName + " appears...";
 
         playerHUD.SetHUD(playerUnit);
         enemyHUD.SetHUD(enemyUnit);
+
+        playerUnit.hud = playerHUD;
+        enemyUnit.hud = enemyHUD;
+
+        playerUnit.dialogueText = dialogueText;
+        enemyUnit.dialogueText = dialogueText;
 
         foreach (var move in FindObjectsOfType<Move>())
         {
@@ -96,7 +157,7 @@ public class BattleSystem : MonoBehaviour
             _moves.Add(move.GetName(), move);
         }
 
-        _model = new BattleDataModel(this, enemyUnit, playerUnit, enemyHUD, playerHUD, dialogueText);
+        _model = new BattleDataModel(this, enemyUnit, playerUnit, enemyHUD, playerHUD, dialogueText, BattleState.PlayerTurn, BattleState.Won);
 
         yield return new WaitForSeconds(2f);
 
@@ -106,8 +167,22 @@ public class BattleSystem : MonoBehaviour
 
     void PlayerTurn()
     {
+        if (playerUnit.SkipTurn())
+        {
+            StartCoroutine(Asleep(playerUnit.unitName, BattleState.EnemyTurn));
+            return;
+        }
+
         actionHUD.Enable();
         dialogueText.text = "Choose an action:";
+    }
+
+    private IEnumerator Asleep(string unitName, BattleState nextState)
+    {
+        dialogueText.text = $"{unitName} is asleep!";
+        yield return new WaitForSeconds(0.6f);
+
+        SetState(nextState);
     }
 
     public void OnAttackButton1()
@@ -145,14 +220,19 @@ public class BattleSystem : MonoBehaviour
             actionHUD.Disable();
             if (!_moves.ContainsKey(moveName))
             {
-                dialogueText.text = "That move was not effective!";
+                dialogueText.text = $"{playerUnit.unitName} tried to use {moveName}. It was not effective!";
                 Debug.LogError($"Move {moveName} was not in the dictionary!");
                 yield return new WaitForSeconds(2f);
-                SetState(BattleState.Enemyturn);
+                SetState(BattleState.EnemyTurn);
             } else
             {
+                dialogueText.text = $"{playerUnit.unitName} uses {moveName}.";
+
+                yield return new WaitForSeconds(2f);
+
                 SetModelSource(playerUnit, playerHUD);
                 SetModelTarget(enemyUnit, enemyHUD);
+                SetModelStates(BattleState.EnemyTurn, BattleState.Won);
 
                 var move = Instantiate(_moves[moveName].gameObject, playerUnit.launcher);
 
@@ -173,39 +253,18 @@ public class BattleSystem : MonoBehaviour
         _model.targetHUD = targetHUD;
     }
 
-    public void OnItemsButton()
+    private void SetModelStates(BattleState nextState, BattleState finishState)
     {
-        if (state != BattleState.PlayerTurn)
-        {
-            return;
-        }
-
-        actionHUD.Disable();
-        StartCoroutine(PlayerAttack());
-    }
-
-    IEnumerator PlayerAttack()
-    {
-        var isDead = enemyUnit.TakeDamage(playerUnit.damage);
-
-        enemyHUD.SetHP(enemyUnit.currentHP);
-        dialogueText.text = "The attack is successful!";
-
-        yield return new WaitForSeconds(2f);
-
-        if (isDead)
-        {
-            SetState(BattleState.Won);
-        }
-        else
-        {
-            SetState(BattleState.Enemyturn);
-        }
+        _model.nextState = nextState;
+        _model.finishState = finishState;
     }
 
     public void SetState(BattleState state)
     {
         this.state = state;
+
+        enemyHUD.SetHP(enemyUnit.currentHP);
+        playerHUD.SetHP(playerUnit.currentHP);
 
         switch (this.state)
         {
@@ -213,10 +272,22 @@ public class BattleSystem : MonoBehaviour
                 StartCoroutine(SetupBattle());
                 break;
             case BattleState.PlayerTurn:
-                PlayerTurn();
+                StartCoroutine(enemyUnit.OnTurn(delegate
+                {
+                    StartCoroutine(playerUnit.OnTurn(delegate
+                    {
+                        PlayerTurn();
+                    }));
+                }));
                 break;
-            case BattleState.Enemyturn:
-                StartCoroutine(EnemyTurn());
+            case BattleState.EnemyTurn:
+                StartCoroutine(playerUnit.OnTurn(delegate
+                {
+                    StartCoroutine(enemyUnit.OnTurn(delegate
+                    {
+                        EnemyTurn();
+                    }));
+                }));
                 break;
             case BattleState.Won:
                 StartCoroutine(WonBattle());
@@ -227,24 +298,47 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-    IEnumerator EnemyTurn()
+    void EnemyTurn()
     {
-        dialogueText.text = enemyUnit.unitName + " attacks!";
-
-        yield return new WaitForSeconds(1f);
-
-        var isDead = playerUnit.TakeDamage(enemyUnit.damage);
-
-        playerHUD.SetHP(playerUnit.currentHP);
-
-        yield return new WaitForSeconds(1f);
-
-        if (isDead)
+        if (enemyUnit.SkipTurn())
         {
-            SetState(BattleState.Lost);
-        } else
+            StartCoroutine(Asleep(enemyUnit.unitName, BattleState.PlayerTurn));
+            return;
+        }
+
+        StartCoroutine(ExecuteEnemyAction(enemyUnit.enemyMoves[Random.Range(0, enemyUnit.enemyMoves.Count)]));
+    }
+
+    private IEnumerator ExecuteEnemyAction(string moveName)
+    {
+        if (state != BattleState.EnemyTurn)
         {
-            SetState(BattleState.PlayerTurn);
+            yield return null;
+        }
+        else
+        {
+            actionHUD.Disable();
+            if (!_moves.ContainsKey(moveName))
+            {
+                dialogueText.text = $"{enemyUnit.unitName} tried to use {moveName}. It was not very effective...";
+                Debug.LogError($"Move {moveName} was not in the dictionary!");
+                yield return new WaitForSeconds(2f);
+                SetState(BattleState.PlayerTurn);
+            }
+            else
+            {
+                dialogueText.text = $"{enemyUnit.unitName} uses {moveName}.";
+
+                yield return new WaitForSeconds(2f);
+
+                SetModelTarget(playerUnit, playerHUD);
+                SetModelSource(enemyUnit, enemyHUD);
+                SetModelStates(BattleState.PlayerTurn, BattleState.Lost);
+
+                var move = Instantiate(_moves[moveName].gameObject, enemyUnit.launcher);
+
+                StartCoroutine(move.GetComponent<Move>().Execute(_model));
+            }
         }
     }
 
@@ -255,7 +349,8 @@ public class BattleSystem : MonoBehaviour
 
         if (playerUnit.LevelUp(enemyUnit.experience))
         {
-            Debug.Log("Level Up!");
+            levelUpBanner.SetActive(true);
+            yield return new WaitForSeconds(3f);
         }
 
         BackToDungeon();
@@ -265,6 +360,8 @@ public class BattleSystem : MonoBehaviour
     {
         dialogueText.text = "You were defeated...";
         yield return new WaitForSeconds(1f);
+
+        playerUnit.isDead = true;
 
         BackToDungeon();
     }
@@ -282,6 +379,7 @@ public class BattleSystem : MonoBehaviour
         GlobalControl.instance.playerSave.offensiveMove2Name = playerUnit.offensiveMove2Name;
         GlobalControl.instance.playerSave.defensiveMoveName = playerUnit.defensiveMoveName;
         GlobalControl.instance.playerSave.isNew = false;
+        GlobalControl.instance.playerSave.isDead = playerUnit.isDead;
 
         GlobalControl.instance.enemySave.isNew = true;
 
