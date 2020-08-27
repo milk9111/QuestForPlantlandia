@@ -1,22 +1,12 @@
 ﻿<Properties StartupConfiguration="{05952C58-7988-EF32-27E1-36DD153081CF}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Move.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/NewClass.cs">
     <Files>
-      <File FileName="Assets/Scripts/LeafSlap.cs" Line="7" Column="5" />
-      <File FileName="Assets/Scripts/FireWall.cs" Line="39" Column="9" />
-      <File FileName="Assets/Scripts/LevelManager.cs" Line="95" Column="6" />
-      <File FileName="Assets/Scripts/BattleSystem.cs" Line="110" Column="40" />
-      <File FileName="Assets/Scripts/Unit.cs" Line="144" Column="10" />
-      <File FileName="Assets/Scripts/StemWhip.cs" Line="7" Column="5" />
-      <File FileName="Assets/Scripts/BushGrow.cs" Line="7" Column="5" />
-      <File FileName="Assets/Scripts/StatusEffect.cs" Line="7" Column="13" />
-      <File FileName="Assets/Scripts/LightningBolt.cs" Line="7" Column="5" />
-      <File FileName="Assets/Scripts/HeadButt.cs" Line="42" Column="55" />
-      <File FileName="Assets/Scripts/TripleShot.cs" Line="110" Column="10" />
-      <File FileName="Assets/Scripts/SliceAndDice.cs" Line="21" Column="34" />
-      <File FileName="Assets/Scripts/Heal.cs" Line="9" Column="36" />
-      <File FileName="Assets/Scripts/SleepPowder.cs" Line="28" Column="6" />
-      <File FileName="Assets/Scripts/CreditsManager.cs" Line="21" Column="1" />
-      <File FileName="Assets/Scripts/Move.cs" Line="7" Column="1" />
+      <File FileName="Assets/Scripts/DungeonGenerator.cs" Line="68" Column="56" />
+      <File FileName="Assets/Scripts/NoiseGeneration.cs" Line="20" Column="6" />
+      <File FileName="Assets/Scripts/NoiseLayer.cs" Line="9" Column="29" />
+      <File FileName="Assets/Scripts/Domain/NewClass.cs" Line="13" Column="29" />
+      <File FileName="Assets/CannedLevels/NewFile.txt" Line="2" Column="5" />
+      <File FileName="Assets/Scripts/NewClass.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -24,7 +14,9 @@
           <Node name="BrackeyGameJam2020_2" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="Move.cs" selected="True" />
+                <Node name="Domain" expanded="True" />
+                <Node name="Dungeon" expanded="True" />
+                <Node name="NewClass.cs" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -34,7 +26,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="2231f38b-26f3-41d2-ac51-76bded06f2b8" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="324d5e9a-461c-4fcd-81fb-33b0c499afae" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/connor/git/QuestForPlantlandia/BrackeyGameJam2020_2/Assets/Scripts/RewindManager.cs" relfile="Assets/Scripts/RewindManager.cs" line="46" column="1" />

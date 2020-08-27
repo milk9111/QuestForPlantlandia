@@ -15,6 +15,9 @@ public enum BattleState
 
 public class BattleSystem : MonoBehaviour
 {
+    public string overridingPlayer;
+    public string overridingEnemy;
+
     public ActionHUD actionHUD;
     public BattleHUD playerHUD;
     public BattleHUD enemyHUD;
@@ -58,8 +61,14 @@ public class BattleSystem : MonoBehaviour
 
         actionHUD.Disable();
 
+        var playerName = GlobalControl.instance.playerSave.unitName;
+        if (!string.IsNullOrEmpty(overridingPlayer))
+        {
+            playerName = overridingPlayer;
+        }
+
         GameObject player = null;
-        switch(GlobalControl.instance.playerSave.unitName)
+        switch(playerName)
         {
             case "Gemini":
                 player = Instantiate(geminiObj, playerBattleStation);
@@ -75,16 +84,20 @@ public class BattleSystem : MonoBehaviour
         playerUnit = player.GetComponent<Unit>();
         playerUnit.finishState = BattleState.Lost;
 
-        playerUnit.unitName = GlobalControl.instance.playerSave.unitName;
-        playerUnit.unitLevel = GlobalControl.instance.playerSave.unitLevel;
-        playerUnit.experience = GlobalControl.instance.playerSave.experience;
-        playerUnit.experienceToNextLevel = GlobalControl.instance.playerSave.experienceToNextLevel;
-        playerUnit.damage = GlobalControl.instance.playerSave.damage;
-        playerUnit.maxHP = GlobalControl.instance.playerSave.maxHP;
-        playerUnit.currentHP = GlobalControl.instance.playerSave.currentHP;
-        playerUnit.offensiveMove1Name = GlobalControl.instance.playerSave.offensiveMove1Name;
-        playerUnit.offensiveMove2Name = GlobalControl.instance.playerSave.offensiveMove2Name;
-        playerUnit.defensiveMoveName = GlobalControl.instance.playerSave.defensiveMoveName;
+        if (string.IsNullOrEmpty(overridingPlayer))
+        {
+            Debug.Log("in here");
+            playerUnit.unitName = GlobalControl.instance.playerSave.unitName;
+            playerUnit.unitLevel = GlobalControl.instance.playerSave.unitLevel;
+            playerUnit.experience = GlobalControl.instance.playerSave.experience;
+            playerUnit.experienceToNextLevel = GlobalControl.instance.playerSave.experienceToNextLevel;
+            playerUnit.damage = GlobalControl.instance.playerSave.damage;
+            playerUnit.maxHP = GlobalControl.instance.playerSave.maxHP;
+            playerUnit.currentHP = GlobalControl.instance.playerSave.currentHP;
+            playerUnit.offensiveMove1Name = GlobalControl.instance.playerSave.offensiveMove1Name;
+            playerUnit.offensiveMove2Name = GlobalControl.instance.playerSave.offensiveMove2Name;
+            playerUnit.defensiveMoveName = GlobalControl.instance.playerSave.defensiveMoveName;
+        }
 
         actionHUD.SetText(playerUnit.offensiveMove1Name, playerUnit.offensiveMove2Name, playerUnit.defensiveMoveName);
 
@@ -92,6 +105,11 @@ public class BattleSystem : MonoBehaviour
         if (GlobalControl.instance.enemySave != null && !string.IsNullOrEmpty(GlobalControl.instance.enemySave.unitName))
         {
             enemyName = GlobalControl.instance.enemySave.unitName;
+        }
+
+        if (!string.IsNullOrEmpty(overridingEnemy))
+        {
+            enemyName = overridingEnemy;
         }
 
         GameObject enemy = null;
